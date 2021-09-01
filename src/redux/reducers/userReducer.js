@@ -3,7 +3,7 @@ import {SET_USER, LOADING_UI, SET_AUTHENTICATED, SET_UNAUTHENTICATED , LIKE_POST
 const initialState ={
     authenticated: false,
     loading: false,
-    credentials: {},
+    credentials: {handle:'nouser'},
     likes: [],
     notifications: []
 };
