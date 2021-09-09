@@ -32,7 +32,7 @@ import AuthRoute from "./custom_routes/AuthRoute";
 const token = localStorage.FBIdToken;
 if(token){
   const decodedToken = jwtDecode(token);
-  console.log(decodedToken);  //decoded token object
+  // console.log(decodedToken);  //decoded token object
   if(decodedToken.exp * 1000 < Date.now()){
     store.dispatch(logoutUser());
     
