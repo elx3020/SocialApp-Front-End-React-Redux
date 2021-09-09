@@ -6,6 +6,11 @@ import {
   UNLIKE_POST,
   DELETE_POST,
   GET_POST,
+  LOADING_COMMENTS,
+  GET_COMMENTS,
+  CLEAR_POST,
+  GET_POST_ONLY,
+  SET_COMMENT
 } from "../types";
 import axios from "axios";
 
@@ -32,16 +37,56 @@ export const getPosts = () => (dispatch) => {
 
 export const getPost = (postId) => (dispatch) => {
   dispatch({ type: LOADING_DATA });
-  axios
-    .get(`/post/${postId}`)
-    .then((res) => {
-      dispatch({
-        type: GET_POST,
-        payload: res.data,
-      });
-    })
-    .catch((err) => console.log(err));
+  dispatch({type: CLEAR_POST});
+    dispatch({type: GET_POST,
+              payload: postId}); 
 };
+
+// if user gets directly to the post or refresh the page, we get only the post data
+
+export const getOnlyPost = (postId) => (dispatch) => {
+  dispatch({ type: LOADING_DATA });
+  axios
+  .get(`/post/${postId}`)
+  .then(res => {
+    dispatch({type: GET_POST_ONLY,
+              payload: res.data
+            });
+  })
+  .catch(err => console.log(err));
+}
+
+
+// get post with details
+
+export const getComments = (postId) => (dispatch) => {
+  dispatch({type: LOADING_COMMENTS});
+  axios
+  .get(`/post/details/${postId}`)
+  .then((res) => {
+    dispatch({
+      type: GET_COMMENTS,
+      payload: res.data
+    });
+  })
+  .catch(err => console.log(err));
+}
+
+// make a comment 
+
+export const postComment = (postId,postData) => (dispatch) => {
+  dispatch({type:LOADING_COMMENTS});
+  axios
+  .post(`/post/${postId}/comment`,postData)
+  .then(res => {
+    dispatch({type: SET_COMMENT,
+              payload: res.data})
+  })
+  .catch(err => console.log(err))
+
+}
+
+
 
 // publish a new post
 

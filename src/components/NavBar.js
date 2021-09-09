@@ -51,13 +51,11 @@ const NavBar = (props) =>{
 
 NavBar.propTypes = {
     authenticated: PropTypes.bool.isRequired,
-    userhandle: PropTypes.string.isRequired
 }
 
 
 const mapStateToProps = (state) => ({
     authenticated: state.user.authenticated,
-    userhandle: state.user.credentials.handle
 }) 
 
 

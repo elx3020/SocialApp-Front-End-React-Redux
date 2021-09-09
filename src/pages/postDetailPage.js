@@ -1,9 +1,16 @@
-import PostDetails from "../components/posts/PostDetails";
+// React Hooks
 import { useEffect } from "react";
 
+// redux stuff
 import { connect } from "react-redux";
-import { getPost } from "../redux/actions/dataActions";
+import { getComments, getPost, getOnlyPost } from "../redux/actions/dataActions";
 import { useParams } from "react-router";
+
+// components
+import PostDetails from "../components/posts/PostDetails";
+import CommentComponent from "../components/posts/CommentComponent";
+import CreateComment from "../components/posts/CreateComment";
+
 const PostpageStyle = {
     display: "flex",
     justifyContent: "center",
@@ -12,6 +19,10 @@ const PostpageStyle = {
 }
 
 
+const commentSectionStyle = {
+    backgroundColor: "black",
+    padding: "10px"
+}
 
 
 
@@ -19,20 +30,47 @@ const PostDetailPage = (props) =>{
 
     let {post_handle} = useParams(); 
 
-    const {post,loading} = props;
+    const {
+        post,
+        loading,
+        loadingComments,
+        comments,
+        } = props;
+
+   
+
+    
+
 
     useEffect(()=>{
-        props.getPost(post_handle)
 
+        if(post && Object.keys(post).length === 0 && post.constructor === Object){
+            props.getOnlyPost(post_handle);
+            props.getComments(post_handle);
+
+        }else {
+            props.getPost(post_handle);
+            props.getComments(post_handle);
+        }
+        
     },[])
 
     const displayPostDetails = loading ? (<h1>Loading...</h1>) : (<PostDetails key={post.postId} post={post}/>);
 
+    const displayComments = loadingComments ? (<h1>Loading Comments...</h1>) : !comments.length === true ? (<h1>No comments yet..</h1>) : (comments.map(comment => <CommentComponent key={comment.createdAt} comment={comment}/>));
+
     return (
         <div style={PostpageStyle}>
-            <div className="left" style={{flex:'1'}}></div>
+            <div className="left" style={{flex:'1'}}>   
+            </div>
             <div className="post-container center" style={{flex:'2'}}>
-                 {displayPostDetails}
+                {displayPostDetails}
+                <div style={commentSectionStyle}>
+                    {displayComments}
+                </div>
+                <div>
+                    <CreateComment postId={post_handle}/>
+                </div>
             </div>
             <div className="right" style={{flex:'1'}}></div>
         </div>
@@ -41,13 +79,17 @@ const PostDetailPage = (props) =>{
 
 const mapStateToProps = (state) => (
     {
+        loadingComments: state.data.loadingComments,
         loading: state.data.loading,
         post: state.data.post,
+        comments: state.data.comments
     }
 )
 
 const mapActionsToProps = {
-    getPost
+    getPost,
+    getComments,
+    getOnlyPost,
 };
 
 export default connect(mapStateToProps,mapActionsToProps)(PostDetailPage);
