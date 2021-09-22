@@ -80,7 +80,7 @@ const PostCard = (props) => {
 
 
   const handlePostDetails = () =>{
-      history.push(`/post/${postId}`);
+      history.push(`${userHandle}/post/${postId}`);
   }
 
   const handleClickLike = () => {

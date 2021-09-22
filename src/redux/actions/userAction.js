@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED} from '../types';
+import {SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED,MARK_NOTIFICATIONS_READ} from '../types';
 
 
 
@@ -80,6 +80,14 @@ export const editUserData = (editData) => (dispatch) => {
 }
 
 
+
+export const markNotificationRead = (notifications) => (dispatch) => {
+    axios.post('/notifications',notifications)
+        .then(()=>{
+            dispatch({type: MARK_NOTIFICATIONS_READ})
+        })
+        .catch(err => console.log(err));
+}
 
 
 // uses the upload image handler

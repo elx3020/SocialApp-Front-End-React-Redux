@@ -48,12 +48,15 @@ const PostDetailPage = (props) =>{
             props.getOnlyPost(post_handle);
             props.getComments(post_handle);
 
-        }else {
+        }else if(post.postId !== post_handle) {
+            props.getOnlyPost(post_handle);
+            props.getComments(post_handle);    
+        }else{
             props.getPost(post_handle);
             props.getComments(post_handle);
         }
         
-    },[])
+    },[post_handle])
 
     const displayPostDetails = loading ? (<h1>Loading...</h1>) : (<PostDetails key={post.postId} post={post}/>);
 
@@ -76,6 +79,9 @@ const PostDetailPage = (props) =>{
         </div>
     )
 }
+
+
+// TODO: add proptypes
 
 const mapStateToProps = (state) => (
     {

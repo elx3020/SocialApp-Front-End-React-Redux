@@ -57,7 +57,7 @@ export const getOnlyPost = (postId) => (dispatch) => {
 }
 
 
-// get post with details
+// get the comments of the post
 
 export const getComments = (postId) => (dispatch) => {
   dispatch({type: LOADING_COMMENTS});

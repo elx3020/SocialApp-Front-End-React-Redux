@@ -48,6 +48,7 @@ const CreateComment = (props) =>{
 
 }
 
+// TODO: add proptypes
 
 const mapStateToProps = (state) => (
     {

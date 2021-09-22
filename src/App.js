@@ -14,7 +14,7 @@ import { logoutUser, getUserData } from "./redux/actions/userAction";
 
 // *components
 
-import NavBar from "./components/NavBar";
+import NavBar from "./components/layout/NavBar";
 
 //* pages
 import HomePage from "./pages/homePage";
@@ -57,7 +57,7 @@ const routes = (<Switch>
   <AuthRoute path="/login" component={LoginPage}/> 
   <AuthRoute path="/signup" component={SignUpPage} />
   <Route path="/profile/:handle" component={Profilepage} />
-  <Route path="/post/:post_handle" component={PostDetailsPage} />
+  <Route path="/:user_handle/post/:post_handle" component={PostDetailsPage} />
 </Switch>);
 
 

@@ -1,0 +1,55 @@
+.alert-active {
+    position: absolute;
+    background-color: red;
+    width: 10px;
+    z-index: 3;
+    height: 10px;
+    border-radius: 50%;
+    transform: translate(115px,-20px);
+}
+
+
+.panel{
+    position: absolute;
+    width: 200px;
+    height: 0px;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: black;
+}
+.panel ul{
+    transform: translateX(-30px);
+    width: 200px;
+    height: 150px;
+    overflow-y: scroll;
+}
+.panel li {
+    list-style: none;
+    height: 2rem;
+    text-align: center;
+    padding-top: 0.5rem;
+    border-bottom: 1px solid gray;
+}
+
+.panel-open {
+    position: absolute;
+    background-color: black;
+    min-height: 150px;
+    border-radius: 10px;
+    transform: translateY(15px);
+    padding: 0.5rem;
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+    
+
+}
+
+
+
+.panel-close{
+    position: absolute;
+    width: 200px;
+    height: 0px;
+    transition: all 0.2s ease-in-out;
+}
+
