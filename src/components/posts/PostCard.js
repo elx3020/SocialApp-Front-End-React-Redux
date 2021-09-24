@@ -15,18 +15,21 @@ let titleStyle = {
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent: "flex-start",
 };
 
 const cardStyle = {
   backgroundColor: "white",
   color: "black",
-  padding: "1rem",
+  padding: "0.5rem",
   border: "1px solid gray",
 };
 
 const contentStyle = {
-  marginTop: "1rem",
+  minHeight: "80px",
+  padding: "1rem",
+  textAlign: "justify",
+  textJustify: "inter-word",
 };
 
 const footerStyle = {
@@ -53,7 +56,7 @@ const PostCard = (props) => {
   } = props;
 
   // hook
-  let history = useHistory();   
+  let history = useHistory();
 
   //  helper functions
   const userPost = () => {
@@ -78,10 +81,9 @@ const PostCard = (props) => {
 
   // click handlers
 
-
-  const handlePostDetails = () =>{
-      history.push(`${userHandle}/post/${postId}`);
-  }
+  const handlePostDetails = () => {
+    history.push(`${userHandle}/post/${postId}`);
+  };
 
   const handleClickLike = () => {
     props.likePost(postId);
@@ -120,27 +122,33 @@ const PostCard = (props) => {
   );
 
   return (
-      <div style={cardStyle}>
-        <div style={titleStyle}>
-            <img
-            src={userImage}
-            alt="userImage"
-            style={{ width: "50px", height: "auto" }}
-            />
-            <h2>{title}</h2>
-            {deletePostButton}
-        </div>
-        <div className="content" style={contentStyle}>
-            <p onClick={handlePostDetails}>{body}</p>
-            <span style={{ fontSize: "0.8rem" }}>
-            {dayjs(createdAt).format("MMM YYYY")}
-            </span>
-        </div>
-        <div className="post-footer" style={footerStyle}>
-            {likebutton}
-            <span>likes {likeCount}</span>
-            <span>comments {commentCount}</span>
-        </div>
+    <div style={cardStyle}>
+      <div style={titleStyle}>
+        <img
+          src={userImage}
+          alt="userImage"
+          style={{
+            width: "50px",
+            height: "auto",
+            flex: 1,
+            borderRadius: "50%",
+            margin: "10px",
+          }}
+        />
+        <h2 style={{ flex: 6 }}>{title}</h2>
+        <div style={{ flex: 1 }}>{deletePostButton}</div>
+      </div>
+      <div className="content" style={contentStyle}>
+        <p onClick={handlePostDetails}>{body}</p>
+        <span style={{ fontSize: "0.8rem" }}>
+          {dayjs(createdAt).format("MMM YYYY")}
+        </span>
+      </div>
+      <div className="post-footer" style={footerStyle}>
+        {likebutton}
+        <span>likes {likeCount}</span>
+        <span>comments {commentCount}</span>
+      </div>
     </div>
   );
 };
