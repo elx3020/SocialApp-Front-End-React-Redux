@@ -1,0 +1,44 @@
+.card-container {
+  background-color: white;
+  color: black;
+  border: 1px solid lightgray;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.card-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-head div[id="user-image"] {
+  width: 60px;
+}
+
+div[id="user-image"] img {
+  width: 60px;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.card-content {
+  min-height: 70px;
+  padding: 0.5rem;
+}
+
+.card-content p {
+  margin-top: 0.5rem;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: lightgray;
+  height: 50px;
+  padding: 0 1rem 0 1rem;
+  border-radius: 5px;
+}

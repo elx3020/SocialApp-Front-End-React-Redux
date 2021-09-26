@@ -1,6 +1,10 @@
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router";
+
+// styles
+import "../../styles/Card.css";
+import "../../styles/iconsStyles.css";
 // redux
 import { connect } from "react-redux";
 import {
@@ -9,33 +13,6 @@ import {
   deletePost,
 } from "../../redux/actions/dataActions";
 import { Link } from "react-router-dom";
-
-//  styles mostly simple and temporal
-let titleStyle = {
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "flex-start",
-};
-
-const cardStyle = {
-  backgroundColor: "white",
-  color: "black",
-  padding: "0.5rem",
-  border: "1px solid gray",
-};
-
-const contentStyle = {
-  minHeight: "80px",
-  padding: "1rem",
-  textAlign: "justify",
-  textJustify: "inter-word",
-};
-
-const footerStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-};
 
 // Post Card Component
 
@@ -122,29 +99,19 @@ const PostCard = (props) => {
   );
 
   return (
-    <div style={cardStyle}>
-      <div style={titleStyle}>
-        <img
-          src={userImage}
-          alt="userImage"
-          style={{
-            width: "50px",
-            height: "auto",
-            flex: 1,
-            borderRadius: "50%",
-            margin: "10px",
-          }}
-        />
-        <h2 style={{ flex: 6 }}>{title}</h2>
-        <div style={{ flex: 1 }}>{deletePostButton}</div>
+    <div className="card-container">
+      <div className="card-head">
+        <div id="user-image">
+          <img src={userImage} alt="userImage" />
+        </div>
+        <h3>{title}</h3>
+        <div id="toggle">{deletePostButton}</div>
       </div>
-      <div className="content" style={contentStyle}>
+      <div className="card-content">
         <p onClick={handlePostDetails}>{body}</p>
-        <span style={{ fontSize: "0.8rem" }}>
-          {dayjs(createdAt).format("MMM YYYY")}
-        </span>
+        <span>{dayjs(createdAt).format("MMM YYYY")}</span>
       </div>
-      <div className="post-footer" style={footerStyle}>
+      <div className="card-footer">
         {likebutton}
         <span>likes {likeCount}</span>
         <span>comments {commentCount}</span>
