@@ -2,7 +2,9 @@ import "../../styles/PageStyle.css";
 
 const Footer = (props) => {
   return (
-    <footer className="footer-format">Here is the foot of the page</footer>
+    <footer className="footer-format">
+      Esteban Lasso &copy; All rights reserved
+    </footer>
   );
 };
 

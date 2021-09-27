@@ -46,6 +46,7 @@ const PostDetailPage = (props) => {
       props.getPost(post_handle);
       props.getComments(post_handle);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [post_handle]);
 
   const displayPostDetails = loading ? (

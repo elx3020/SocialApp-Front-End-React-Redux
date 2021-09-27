@@ -38,7 +38,24 @@ div[id="user-image"] img {
   align-items: center;
   justify-content: space-between;
   background-color: lightgray;
-  height: 50px;
-  padding: 0 1rem 0 1rem;
+  padding: 0.3rem 1rem 0.3rem 1rem;
   border-radius: 5px;
+}
+
+.likes-section {
+  display: flex;
+  align-items: center;
+}
+
+/* skeletal */
+
+.fill-bar {
+  height: 10px;
+  width: 400px;
+  background-color: lightgray;
+  margin-bottom: 1rem;
+}
+
+.short {
+  width: 200px;
 }

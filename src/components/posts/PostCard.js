@@ -5,6 +5,7 @@ import { useHistory } from "react-router";
 // styles
 import "../../styles/Card.css";
 import "../../styles/iconsStyles.css";
+import "../../styles/buttonsStyle.css";
 // redux
 import { connect } from "react-redux";
 import {
@@ -77,13 +78,19 @@ const PostCard = (props) => {
   // like button
 
   const likebutton = !authenticated ? (
-    <button>
-      <Link to="/login">Like</Link>
+    <button className="button unlike">
+      <Link to="/login">
+        <i className="far fa-heart"></i>
+      </Link>
     </button>
   ) : likedPost() ? (
-    <button onClick={handleClickUnlike}>Unlike</button>
+    <button className="button like" onClick={handleClickUnlike}>
+      <i className="fas fa-heart"></i>
+    </button>
   ) : (
-    <button onClick={handleClickLike}>Like</button>
+    <button className="button unlike" onClick={handleClickLike}>
+      <i className="far fa-heart"></i>
+    </button>
   );
 
   // delete button
@@ -112,9 +119,14 @@ const PostCard = (props) => {
         <span>{dayjs(createdAt).format("MMM YYYY")}</span>
       </div>
       <div className="card-footer">
-        {likebutton}
-        <span>likes {likeCount}</span>
-        <span>comments {commentCount}</span>
+        <div className="likes-section">
+          {likebutton}
+          <p>{likeCount}</p>
+        </div>
+
+        <span onClick={handlePostDetails}>
+          <i className="fas fa-comments"></i> Comments: {commentCount}
+        </span>
       </div>
     </div>
   );

@@ -1,0 +1,58 @@
+.notification-link {
+  position: relative;
+  color: red;
+  margin-left: 2rem;
+  cursor: pointer;
+}
+
+.alert-active {
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  z-index: 3;
+  height: 10px;
+  border-radius: 50%;
+  transform: translate(115px, -20px);
+}
+
+.panel {
+  position: absolute;
+  width: 200px;
+  height: 0px;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: black;
+  padding: 0.5rem;
+  opacity: 0;
+}
+.panel ul {
+  list-style: none;
+  padding: 0;
+  width: 200px;
+  height: 150px;
+  overflow-y: scroll;
+}
+.panel li {
+  text-align: center;
+  height: 2rem;
+  padding-top: 0.5rem;
+  border-bottom: 1px solid gray;
+}
+
+.panel-open {
+  position: absolute;
+  background-color: black;
+  min-height: 150px;
+  border-radius: 10px;
+  transform: translateY(15px);
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.panel-close {
+  position: absolute;
+  width: 200px;
+  height: 0px;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}

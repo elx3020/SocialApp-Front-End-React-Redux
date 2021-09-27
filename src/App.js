@@ -28,6 +28,10 @@ import PostDetailsPage from "./pages/postDetailPage";
 import AuthRoute from "./custom_routes/AuthRoute";
 
 const token = localStorage.FBIdToken;
+
+axios.defaults.baseURL =
+  "https://us-central1-contratofacil-2df81.cloudfunctions.net/api";
+
 if (token) {
   const decodedToken = jwtDecode(token);
   // console.log(decodedToken);  //decoded token object

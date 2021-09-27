@@ -11,21 +11,23 @@ import { getPosts } from "../redux/actions/dataActions";
 // components
 import PostCard from "../components/posts/PostCard";
 import Feedhead from "../components/homepage/Feedhead";
+import HomeSkeletal from "../components/skeletal/HomeSkeletal";
 
 const homepageStyle = {
   display: "flex",
-  justifyContent: "center",
+  width: "100%",
 };
 
 const HomePage = (props) => {
   useEffect(() => {
     props.getPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { posts, loading } = props.data;
 
   let displayPost = loading ? (
-    <h1>Loading...</h1>
+    <HomeSkeletal />
   ) : (
     posts.map((post) => <PostCard key={post.postId} post={post} />)
   );

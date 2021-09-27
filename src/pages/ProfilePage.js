@@ -6,7 +6,8 @@ import { Fragment } from "react";
 // styles
 
 import "../styles/PageStyle.css";
-
+import "../styles/ProfileStyles.css";
+import "../styles/buttonsStyle.css";
 // redux stuff
 import { connect } from "react-redux";
 import { logoutUser, uploadImage } from "../redux/actions/userAction";
@@ -82,7 +83,7 @@ const ProfilePage = (props) => {
   const profileHead = loading ? (
     <h2>Loading..</h2>
   ) : (
-    <div>
+    <div className="profile-head">
       <div>
         <img
           src={imageUrl}
@@ -96,29 +97,39 @@ const ProfilePage = (props) => {
         hidden="hidden"
         onChange={handleImageChange}
       />
-      <button onClick={handleEditPicture}>Upload</button>
-      <h1>{`@${handle}`}</h1>
+      <button onClick={handleEditPicture}>
+        <i className="fas fa-user-edit"></i>
+      </button>
+      <h2>{`@${handle}`}</h2>
     </div>
   );
 
   const profileBody = (
-    <div>
-      {profileHead}
+    <div className="profile-body">
       <p>Joined {dayjs(createAt).format("MMM YYYY")}</p>
-      {location && <p>{location}</p>}
+      {location && <p>- {location} -</p>}
       {website && <a href={website}>{website}</a>}
       {bio && <p>{bio}</p>}
-      <button onClick={toggleEdit}>Edit Profile</button>
-      <button onClick={handleClick}>Log out</button>
+      <div className="buttons-bar">
+        <button className="button btn-profile" onClick={toggleEdit}>
+          Edit Profile
+        </button>
+        <button className="button btn-profile" onClick={handleClick}>
+          Log out
+        </button>
+      </div>
     </div>
   );
 
   const profileMarkup = (
-    <div className="profileuser">
+    <div className="profileuser-container">
       {authenticated && !loading ? (
         <Fragment>
           {!editingProfile ? (
-            profileBody
+            <div>
+              {profileHead}
+              {profileBody}
+            </div>
           ) : (
             <EditUserData
               userLocation={userLocation}
