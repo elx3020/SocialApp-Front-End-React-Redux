@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { Fragment } from "react";
+import { useHistory } from "react-router";
 
 // styles
 
@@ -23,6 +24,8 @@ const ProfilePage = (props) => {
     loading,
   } = props;
 
+  const history = useHistory();
+
   // edit profile state
 
   // component states
@@ -33,7 +36,7 @@ const ProfilePage = (props) => {
 
   // handle user Logout button
   const handleClick = () => {
-    props.logoutUser();
+    props.logoutUser(history);
   };
 
   // handle image change from the input type file element which is hidden to be handle by the buttom below

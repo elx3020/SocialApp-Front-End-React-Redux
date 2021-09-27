@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 
@@ -26,6 +26,7 @@ import PostDetailsPage from "./pages/postDetailPage";
 
 //  authorization routes
 import AuthRoute from "./custom_routes/AuthRoute";
+import { HashRouter } from "react-router-dom";
 
 const token = localStorage.FBIdToken;
 
