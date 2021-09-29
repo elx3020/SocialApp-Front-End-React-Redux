@@ -1,0 +1,22 @@
+.button {
+  background: none;
+  border: none;
+}
+
+.button .fa-heart {
+  font-size: 1.4rem;
+}
+
+.btn-profile {
+  background-color: black;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  font-size: 1rem;
+  color: white;
+  border-radius: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-profile:hover {
+  background-color: lightgray;
+  color: black;
+}

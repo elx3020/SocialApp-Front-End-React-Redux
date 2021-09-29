@@ -4,10 +4,13 @@ import PropTypes from "prop-types";
 // redux stuff
 import { connect } from "react-redux";
 
+// components
+import Notifications from "../Navbar/Notifications";
 
 const linkStyles = {
     color: "red",
     marginLeft: "2rem",
+    textDecoration:"none"
 }
 
 const navBarStyle = {
@@ -28,9 +31,10 @@ const NavBar = (props) =>{
     const {authenticated,userhandle} = props;
 
     const displayNavBar = authenticated ? 
-        ( <div>
+        ( <div style={{display:"flex"}}>
             <Link to="/" style={linkStyles}>Home</Link>
             <Link to={`/profile/${userhandle}`} style={linkStyles}>Profile</Link>
+            <Notifications />
             </div>)
         :
         (<div>
@@ -51,13 +55,11 @@ const NavBar = (props) =>{
 
 NavBar.propTypes = {
     authenticated: PropTypes.bool.isRequired,
-    userhandle: PropTypes.string.isRequired
 }
 
 
 const mapStateToProps = (state) => ({
     authenticated: state.user.authenticated,
-    userhandle: state.user.credentials.handle
 }) 
 
 

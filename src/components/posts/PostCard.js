@@ -1,6 +1,11 @@
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router";
+
+// styles
+import "../../styles/Card.css";
+import "../../styles/iconsStyles.css";
+import "../../styles/buttonsStyle.css";
 // redux
 import { connect } from "react-redux";
 import {
@@ -9,30 +14,6 @@ import {
   deletePost,
 } from "../../redux/actions/dataActions";
 import { Link } from "react-router-dom";
-
-//  styles mostly simple and temporal
-let titleStyle = {
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "space-between",
-};
-
-const cardStyle = {
-  backgroundColor: "white",
-  color: "black",
-  padding: "1rem",
-  border: "1px solid gray",
-};
-
-const contentStyle = {
-  marginTop: "1rem",
-};
-
-const footerStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-};
 
 // Post Card Component
 
@@ -53,7 +34,7 @@ const PostCard = (props) => {
   } = props;
 
   // hook
-  let history = useHistory();   
+  let history = useHistory();
 
   //  helper functions
   const userPost = () => {
@@ -78,10 +59,9 @@ const PostCard = (props) => {
 
   // click handlers
 
-
-  const handlePostDetails = () =>{
-      history.push(`/post/${postId}`);
-  }
+  const handlePostDetails = () => {
+    history.push(`${userHandle}/post/${postId}`);
+  };
 
   const handleClickLike = () => {
     props.likePost(postId);
@@ -98,13 +78,19 @@ const PostCard = (props) => {
   // like button
 
   const likebutton = !authenticated ? (
-    <button>
-      <Link to="/login">Like</Link>
+    <button className="button unlike">
+      <Link to="/login">
+        <i className="far fa-heart"></i>
+      </Link>
     </button>
   ) : likedPost() ? (
-    <button onClick={handleClickUnlike}>Unlike</button>
+    <button className="button like" onClick={handleClickUnlike}>
+      <i className="fas fa-heart"></i>
+    </button>
   ) : (
-    <button onClick={handleClickLike}>Like</button>
+    <button className="button unlike" onClick={handleClickLike}>
+      <i className="far fa-heart"></i>
+    </button>
   );
 
   // delete button
@@ -120,27 +106,28 @@ const PostCard = (props) => {
   );
 
   return (
-      <div style={cardStyle}>
-        <div style={titleStyle}>
-            <img
-            src={userImage}
-            alt="userImage"
-            style={{ width: "50px", height: "auto" }}
-            />
-            <h2>{title}</h2>
-            {deletePostButton}
+    <div className="card-container">
+      <div className="card-head">
+        <div id="user-image">
+          <img src={userImage} alt="userImage" />
         </div>
-        <div className="content" style={contentStyle}>
-            <p onClick={handlePostDetails}>{body}</p>
-            <span style={{ fontSize: "0.8rem" }}>
-            {dayjs(createdAt).format("MMM YYYY")}
-            </span>
+        <h3>{title}</h3>
+        <div id="toggle">{deletePostButton}</div>
+      </div>
+      <div className="card-content">
+        <p onClick={handlePostDetails}>{body}</p>
+        <span>{dayjs(createdAt).format("MMM YYYY")}</span>
+      </div>
+      <div className="card-footer">
+        <div className="likes-section">
+          {likebutton}
+          <p>{likeCount}</p>
         </div>
-        <div className="post-footer" style={footerStyle}>
-            {likebutton}
-            <span>likes {likeCount}</span>
-            <span>comments {commentCount}</span>
-        </div>
+
+        <span onClick={handlePostDetails}>
+          <i className="fas fa-comments"></i> Comments: {commentCount}
+        </span>
+      </div>
     </div>
   );
 };
